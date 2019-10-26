@@ -40,7 +40,7 @@ american_number_system = {
     'seventy': 70,
     'eighty': 80,
     'ninety': 90,
-    'hundred': 100,
+    'hundr': 100,
     'thousand': 1000,
     'million': 1000000,
     'lakh': 100000,
@@ -194,6 +194,9 @@ class S2W:
     # 1. Finding key words like currencies
     currency = {'dollar': '$', 'pound': '£', 'rupe': '₹'}
 
+    denomination = ['hundred', 'thousand', 'million']
+    numbers = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
+
     def __init__(self, text):
         self.text = text
 
@@ -214,7 +217,7 @@ class S2W:
         # check for curreny in the prev and next index
         idx = np.nonzero(nums)
         res = []
-        print(idx[0])   
+        # print(idx[0])   
 
         for val in idx[0]:
           # print(val, nums)
@@ -222,6 +225,13 @@ class S2W:
             num = nums[val+1]
             nums[val] = nums[val] * nums[val+1]
             nums.remove(num)
+
+        for i in range(len(nums)):
+            if i+1 < len(nums) and nums[i+1] != 0 and nums[i] != 0:
+                nums[i] = nums[i] + nums[i+1]
+                nums[i+1] = 0
+
+        # print(nums)
 
         for val in idx[0]:
           # print(words, nums)
@@ -234,7 +244,7 @@ class S2W:
         result = ' '.join(res)
         res = []
         index = idx[0][0]
-        print(words)
+        # print(words)
         for i in range(len(words)):
             if i not in idx[0]:
                 res.append(words[i])
