@@ -204,10 +204,10 @@ class S2W:
     def __init__(self, text):
         self.text = text
 
-    def word2num(self):
+    def word2num(self, text):
         # stemming to get singular words
         p = PorterStemmer()
-        words = [p.stem(word) for word in self.text.split()] # ['s', 'o', 'c', ',', ' ', '3', '2', '\n', ...]
+        words = [p.stem(word) for word in text.split()] # ['s', 'o', 'c', ',', ' ', '3', '2', '\n', ...]
         # print(words)
 
         nums = []
@@ -217,6 +217,9 @@ class S2W:
           except:
             nums.append(0)
         # print(nums)
+
+        if max(nums) == 0:
+            return text
 
         # check for curreny in the prev and next index
         idx = np.nonzero(nums)
@@ -238,6 +241,7 @@ class S2W:
         # print(nums)
 
         # print(idx[0], words)
+        string = ''
         for val in idx[0]:
             if val+1 < len(words):
                 c = words[val+1]
@@ -264,10 +268,10 @@ class S2W:
         result = ' '.join(res)
         return result
 
-    def findAbbreviation(self):
+    def findAbbreviation(self, text):
 
         p = PorterStemmer()
-        words = [p.stem(word) for word in self.text.split()] # ['s', 'o', 'c', ',', ' ', '3', '2', '\n', ...]
+        words = [p.stem(word) for word in text.split()] # ['s', 'o', 'c', ',', ' ', '3', '2', '\n', ...]
         # print(words)
 
         for i in range(len(words)):
@@ -280,22 +284,39 @@ class S2W:
 
         return ' '.join(words)
 
-    def combineAbbreviations(self):
-        text = self.text.split()
-        full_text = self.text.split()
+    def combineAbbreviations(self, sent):
+        text = sent.split()
+        full_text = sent.split()
 
-        words = [word for word in self.text.split() if len(word) == 1]
+        words = [word for word in sent.split() if len(word) == 1]
         res = ''.join(words)
         # print(res)
 
-        [text.remove(word) for word in self.text.split() if len(word) == 1]
+        [text.remove(word) for word in sent.split() if len(word) == 1]
         # print(text)
 
         idx = list(map(lambda x: len(x), full_text))
-        ptr = idx.index(1)
-
-        text.insert(ptr, res)
+        try:
+            ptr = idx.index(1)
+            text.insert(ptr, res)
+        except:
+            pass
 
         return ' '.join(text)
+
+    def driver(self):
+        sentences = self.text.split('.')
+        out = []
+        for sentence in sentences:
+            output = self.findAbbreviation(sentence)
+            # print(output)
+            output = self.word2num(output)
+            # print(output)
+            output = self.combineAbbreviations(output)
+            # print(output)
+            out.append(output)
+
+        return '. '.join(out)
+
 
 

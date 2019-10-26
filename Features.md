@@ -14,3 +14,12 @@ Example:
 Input:  convert double o seven to shortform
 Output:  convert oo seven to shortform
 ```
+
+### 3. Covert Time into the corresponding format
+
+```
+Example:
+Input:	convert seven thirty A M to time format
+Output:	convert 7:30 AM to time format
+```
+
