@@ -15,7 +15,9 @@ american_number_system = {
     'zero': 0,
     'one': 1,
     'two': 2,
+    'doubl': 2,
     'three': 3,
+    'tripl': 3,
     'four': 4,
     'five': 5,
     'six': 6,
@@ -233,12 +235,21 @@ class S2W:
 
         # print(nums)
 
+        # print(idx[0], words)
         for val in idx[0]:
-          # print(words, nums)
-          if words[val+1] in self.currency.keys():
-            c = words[val+1]
-            res.append(str(self.currency.get(c)) + str(max(nums)))
-            words.remove(c)
+            if val+1 < len(words):
+                c = words[val+1]
+            # print(words, nums, c)
+            string = str(max(nums))
+            if c in self.currency.keys():
+                string = str(self.currency.get(c)) + string
+                words.remove(c)
+        res.append(str(string))
+
+            # if words[val+1] in self.currency.keys():
+            #   c = words[val+1]
+            #   res.append(str(self.currency.get(c)) + str(max(nums)))
+            #   words.remove(c)
 
           # elif words[]
         result = ' '.join(res)
@@ -252,6 +263,6 @@ class S2W:
         result = ' '.join(res)
         return result
 
-    # def findAbbreviations(self):
+    # def findAbbreviation(self):
 
 

@@ -2,7 +2,9 @@ from spoken2written import S2W
 
 if __name__ == '__main__':
 	# Input text
-	input_text = 'convert two pounds to number'
+	input_text = 'convert two thousand three hundred dollars to number'
+
+	# input_text = 'convert three to number'
 
 	# Intializing the class
 	s2w = S2W(input_text)
