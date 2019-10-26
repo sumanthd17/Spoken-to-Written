@@ -1,5 +1,14 @@
 The Repo contains code for spoken english to written english converter
 
-Feature Implemented:
-1. Spoken to currency to numbers
-	Eg. The input "Two dollars" will be converted to "$2"
+## Features Implemented:
+
+### 1. Spoken to currency to numbers
+
+
+```
+Input:  convert two thousand three hundred dollars to number
+Output:  convert $2300 to number
+
+Input:  convert two pounds to number
+Output:  convert £2 to number
+```
