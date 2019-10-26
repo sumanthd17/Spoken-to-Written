@@ -29,6 +29,11 @@ Input:  where is the P M O office
 Output:  where is the PMO office
 ```
 
+### Installation
+```
+python setup.py install
+```
+
 ### Usage
 ```
 from spoken2written import S2W
