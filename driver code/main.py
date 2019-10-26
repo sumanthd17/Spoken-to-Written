@@ -2,7 +2,7 @@ from spoken2written import S2W
 
 if __name__ == '__main__':
 	# Input text
-	input_text = 'convert triple A to shortform'
+	input_text = 'convert double o seven to shortform'
 
 	# input_text = 'convert three to number'
 
