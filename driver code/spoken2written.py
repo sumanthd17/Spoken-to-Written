@@ -199,6 +199,8 @@ class S2W:
     denomination = ['hundred', 'thousand', 'million']
     numbers = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
 
+    multiples = ['doubl', 'tripl']
+
     def __init__(self, text):
         self.text = text
 
@@ -251,7 +253,6 @@ class S2W:
             #   res.append(str(self.currency.get(c)) + str(max(nums)))
             #   words.remove(c)
 
-          # elif words[]
         result = ' '.join(res)
         res = []
         index = idx[0][0]
@@ -263,6 +264,18 @@ class S2W:
         result = ' '.join(res)
         return result
 
-    # def findAbbreviation(self):
+    def findAbbreviation(self):
 
+        p = PorterStemmer()
+        words = [p.stem(word) for word in self.text.split()] # ['s', 'o', 'c', ',', ' ', '3', '2', '\n', ...]
+        # print(words)
 
+        for i in range(len(words)):
+            if i-1 > 0 and words[i-1] in self.multiples:
+                c = words[i-1]
+
+                words[i] = words[i] * word_to_num(c)
+                # print(nums[i], word_to_num(c), words[i])
+                words.remove(c)
+
+        return ' '.join(words)
