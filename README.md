@@ -32,6 +32,7 @@ Output:  where is the PMO office
 ### Installation
 ```
 python setup.py install
+pip install -r requirements.txt
 ```
 
 ### Usage
