@@ -279,3 +279,23 @@ class S2W:
                 words.remove(c)
 
         return ' '.join(words)
+
+    def combineAbbreviations(self):
+        text = self.text.split()
+        full_text = self.text.split()
+
+        words = [word for word in self.text.split() if len(word) == 1]
+        res = ''.join(words)
+        # print(res)
+
+        [text.remove(word) for word in self.text.split() if len(word) == 1]
+        # print(text)
+
+        idx = list(map(lambda x: len(x), full_text))
+        ptr = idx.index(1)
+
+        text.insert(ptr, res)
+
+        return ' '.join(text)
+
+

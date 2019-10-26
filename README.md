@@ -22,3 +22,10 @@ Output:  convert £2 to number
 Input:  convert triple A to shortform
 Output:  convert AAA to shortform
 ```
+
+### 3. Combine abbreviation short forms
+
+```
+Input:  where is the P M O office
+Output:  where is the PMO office
+```
