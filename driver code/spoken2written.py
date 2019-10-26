@@ -252,3 +252,6 @@ class S2W:
         result = ' '.join(res)
         return result
 
+    # def findAbbreviations(self):
+
+
